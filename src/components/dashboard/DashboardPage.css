@@ -1,0 +1,10 @@
+.dashboard {
+  width: 100%;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+  align-items: center;
+}

@@ -1,0 +1,25 @@
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 20px;
+  padding: 10px 20px;
+}
+.navbar-container .nav-list{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+.nav-list , ul > li {
+  padding-right: 2em;
+}
+.nav-list , a:hover {
+   color: rgb(1, 82, 203);
+}
+.nav-list .logo , a {
+  text-decoration: none;
+  color: #000;
+}
