@@ -1,0 +1,30 @@
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  background-color: #f8f9faa9;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+.nav-listy > a:hover {
+  color: rgba(55, 170, 216, 0.808);
+}
+.footer-container > p {
+  font-weight: bold;
+}
+
+.footer-container .nav-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-list > a {
+  padding-left: 15px;
+}

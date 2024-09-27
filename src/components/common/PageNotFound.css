@@ -1,0 +1,15 @@
+h1 {
+  font-weight: bold;
+  font-size: 60px;
+}
+p {
+  font-size: 20px;
+}
+
+.container-page-error {
+  display: flex;
+  flex-direction: column;
+  background-color: none;
+  align-items: center;
+  margin: 7em auto;
+}
