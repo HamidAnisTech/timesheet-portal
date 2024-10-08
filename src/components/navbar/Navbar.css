@@ -8,18 +8,25 @@
   margin: 0px 20px;
   padding: 10px 20px;
 }
-.navbar-container .nav-list{
+.navbar-container .nav-list {
   display: flex;
   flex-direction: row;
   list-style: none;
 }
-.nav-list , ul > li {
+.navbar-container .nav-list,
+ul > li {
   padding-right: 2em;
 }
-.nav-list , a:hover {
-   color: rgb(1, 82, 203);
+.navbar-container .nav-list,
+ul > li > a:hover {
+  color: rgb(1, 82, 203);
 }
-.nav-list .logo , a {
+.navbar-container .nav-list,
+ul > li > a {
+  text-decoration: none;
+  color: #000;
+}
+.navbar-container .logo > a {
   text-decoration: none;
   color: #000;
 }

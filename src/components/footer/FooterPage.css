@@ -4,7 +4,7 @@
   bottom: 0px;
 }
 
-.footer-container {
+ .footer .footer-container {
   display: flex;
   justify-content: space-around;
   box-sizing: border-box;
@@ -13,18 +13,23 @@
   text-align: center;
   font-size: 14px;
 }
-.nav-listy > a:hover {
+.footer .footer-container .nav-list >
+a:hover {
   color: rgba(55, 170, 216, 0.808);
 }
-.footer-container > p {
+.footer .footer-container >
+p {
   font-weight: bold;
-}
+ }
 
-.footer-container .nav-list {
+.footer .footer-container .nav-list {
   display: flex;
   flex-direction: row;
 }
 
-.nav-list > a {
+.footer .footer-container .nav-list >
+a {
   padding-left: 15px;
+  text-decoration: none;
+  color: black;
 }

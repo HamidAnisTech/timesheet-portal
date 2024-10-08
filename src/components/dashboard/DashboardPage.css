@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.dashboard-container {
+.dashboard .dashboard-container {
   display: flex;
   flex-direction: column;
   margin: 10px 20px;

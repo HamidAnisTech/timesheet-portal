@@ -1,0 +1,11 @@
+.users-container {
+  width: 100%;
+}
+.users-container > h2 {
+  text-align: center;
+  padding-top: 10px;
+}
+.users-container .add-user {
+  margin-bottom: 5px;
+  margin-left: 20px;
+}

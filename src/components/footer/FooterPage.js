@@ -1,6 +1,6 @@
 import React from "react";
 import "./FooterPage.css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="footer">
@@ -17,4 +17,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);

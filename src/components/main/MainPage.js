@@ -65,4 +65,4 @@ function MainArea() {
   );
 }
 
-export default MainArea;
+export default React.memo(MainArea);
