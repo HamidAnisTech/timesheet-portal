@@ -1,0 +1,17 @@
+.manage-user-cantainer {
+  width: 100%;
+}
+
+.manage-user-cantainer > form > h2 {
+  text-align: center;
+}
+.manage-user-cantainer > form > button {
+  margin: 0px 80px;
+  width: 80%;
+}
+.manage-user-cantainer .form-group {
+  width: 80%;
+  margin-left: 80px;
+  padding: 10px;
+  background-color: #fffffffd;
+}

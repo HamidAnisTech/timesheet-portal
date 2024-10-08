@@ -1,45 +1,51 @@
 import React from "react";
 import "./Navbar.css";
-import { NavLink } from "react-router-dom/";
-function NavBar() {
-  const activeStyle = { color: "#F15B2A" };
+import { Link, useNavigate } from "react-router-dom/";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Navbar } from "react-bootstrap";
+import * as authACtion from "../../redux/actions/authAction";
+function NavBar({ logout }) {
+  const navigation = useNavigate();
   function onLogout(e) {
     e.preventDefault();
+    logout();
+    navigation("/login");
   }
 
   return (
     <nav class className="nav">
       <div className="navbar-container">
         <div className="logo">
-          <NavLink activeClassName={activeStyle} to="/home">
-            WEBICARE LOGO
-          </NavLink>
+          <Link to="/home">WEBICARE LOGO</Link>
         </div>
         <ul className="nav-list">
           <li>
-            <NavLink activeClassName={activeStyle} to="/timesheets">
-              Timesheet
-            </NavLink>
+            <Link to="/timesheets">Timesheet</Link>
           </li>
           <li></li>
           <li>
-            <NavLink activeClassName={activeStyle} to="/users">
-              Users
-            </NavLink>
+            <Link to="/users">Users</Link>
           </li>
           <li>
-            <NavLink
-              activeClassName={activeStyle}
-              to="/logout"
-              onClick={onLogout}
-            >
+            <Link to="/logout" onClick={onLogout}>
               Logout
-            </NavLink>
+            </Link>
           </li>
         </ul>
       </div>
     </nav>
   );
 }
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
 
-export default NavBar;
+const mapStateToProp = (state) => {
+  return {};
+};
+
+const mapDispatchToProp = {
+  logout: authACtion.logout,
+};
+export default connect(mapStateToProp, mapDispatchToProp)(NavBar);

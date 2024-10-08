@@ -1,17 +1,30 @@
-import { configureStore, applyMiddleware, compose } from "@reduxjs/toolkit";
+import { configureStore, compose, applyMiddleware } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // Defaults to localStorage
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
+import { thunk } from "redux-thunk";
 import rootReducer from "./reducers";
-import initialState from "./reducers/initialState";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 function createStore() {
-  let composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  composeEnhancer = composeEnhancer(
-    applyMiddleware(reduxImmutableStateInvariant())
+  let composeEnhancers =
+    (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()) ||
+    compose;
+  composeEnhancers = composeEnhancers(
+    applyMiddleware(reduxImmutableStateInvariant(), thunk)
   );
-  return configureStore({
-    reducer: rootReducer,
-    initialState,
-    composeEnhancer,
+  const store = configureStore({
+    reducer: persistedReducer,
+    composeEnhancers,
   });
+  const persistor = persistStore(store);
+  return { store, persistor };
 }
 
 export default createStore;

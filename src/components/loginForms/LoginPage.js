@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert } from "react-bootstrap";
 import "./LoginPage.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as userAction from "../../redux/actions/userActions";
-const LoginPage = ({ users, getUsers, logIn }) => {
+import * as authACtion from "../../redux/actions/authAction";
+const LoginPage = ({ logIn }) => {
   const [email, setEmail] = useState("");
   const [pswd, setPswd] = useState("");
-  const [user, setUser] = useState();
-  const [isFormValid, setFormValid] = useState(true);
+  const [errors, setErrors] = useState();
   const navigate = useNavigate();
 
   let hundleEmailInput = (e) => {
@@ -20,20 +19,22 @@ const LoginPage = ({ users, getUsers, logIn }) => {
     setPswd(e.target.value);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    let currentUser = users?.find((user) => user.email === email);
-    if (!currentUser) {
-      setFormValid(false);
-    } else {
-      setUser(currentUser);
-      navigate("/home");
-    }
-  };
+  function formIsValid() {
+    const errors = {};
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+    if (!email.includes("@")) errors.email = "Provide valid email.";
+    if (!pswd)
+      errors.pswd = "Password length should be greater or equal 6 character";
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!formIsValid) return;
+    logIn(email, pswd);
+    navigate("/home");
+  };
 
   return (
     <div className="align-center">
@@ -43,9 +44,11 @@ const LoginPage = ({ users, getUsers, logIn }) => {
       </div>
       <div className="log-container">
         <h2>Login Page</h2>
-        {!isFormValid && (
-          <Alert variant="danger">"Invalid Email or Password"</Alert>
-        )}
+        {/* {!errors && (
+          <Alert variant="danger">
+            {errors?.email} {errors?.pswd}
+          </Alert>
+        )} */}
         <Form onSubmit={handleLogin}>
           <Form.Group controlId="formEmail">
             <Form.Label>Email address</Form.Label>
@@ -78,19 +81,13 @@ const LoginPage = ({ users, getUsers, logIn }) => {
   );
 };
 
-LoginPage.prototype = {
-  users: PropTypes.array.isRequired,
+LoginPage.proptype = {
   logIn: PropTypes.func.isRequired,
-  getUsers: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 const mapStateToProp = (state) => {
-  return {
-    users: state.users,
-  };
+  return {};
 };
 const mapDispatchToProp = {
-  getUsers: userAction.getUsers,
-  logIn: userAction.logIn,
+  logIn: authACtion.logIn,
 };
-export default connect(mapStateToProp, mapDispatchToProp)(LoginPage);
+export default connect(mapStateToProp,mapDispatchToProp)(LoginPage);
